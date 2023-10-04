@@ -5,11 +5,19 @@ import styles from './page.module.css'
 import Button from '../components/Button'
 import Footer from '../components/Footer'
 import LocalVideo from '../components/LocalVideo'
+import {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDisplay } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 
 export default function Home() {
+   const [stopShare, setStopShare] = useState(false);
+
+   const handleShare = () => {
+      setStopShare(!stopShare);
+   }
+
+  
   return (
     <div className=" container px-4 relative pb-28 bg-sky-200 min-h-screen min-w-full">
       <header className="text-6xl p-6 text-center font-sans">
@@ -36,8 +44,8 @@ export default function Home() {
                       Unirse ahora
                     </Button>
                   </Link>
-                  <Button>
-                    <FontAwesomeIcon icon={faDisplay} /> Presentar
+                  <Button onClick={handleShare}>
+                    <FontAwesomeIcon icon={faDisplay} /> {stopShare ? 'Compartir pantalla' : 'Dejar de compartir'}
                   </Button>
                   {/*<button className=" border-black rounded-3xl" id="join_leave">Unirse ahora</button>
                     <button className="rounded" id="share_screen" disabled>Share screen</button>*/}
